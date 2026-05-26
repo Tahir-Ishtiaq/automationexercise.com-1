@@ -23,7 +23,7 @@ public class TestNG {
         home.ClickOnLogin()
         .SignUp("Tahir", "tahirr@gmail.com")
         .fillAndSubmitSignupForm("tahirtahir","3", "February",
-        "2003", "Tahir", "Ishtiaq", "ABC","India",
+        "2003", "Tahir", "Ishtiaq", "ABC","Canada",
          "ABC", "ABC", "12354", "01234567890")
         .continueUser()
         .CheckAndDeleteAccount()
