@@ -26,4 +26,34 @@ public class Login extends BaseClass{
         clickOn(signup);
         return new Signup(driver);
     }
+
+
+    @FindBy(xpath = "//input[@name='email'][1]")
+    WebElement emailForLogin;
+
+    @FindBy(xpath = "//input[@name='password']")
+    WebElement passwordForLogin;
+
+    @FindBy(xpath = "//button[text()='Login']")
+    WebElement loginButton;
+
+    public Home  Login(String Email, String Password){
+        checkText("New User Signup!");
+        inputValue(emailForLogin, Email);
+        inputValue(passwordForLogin, Password);
+        clickOn(loginButton);
+        return new Home(driver);
+
+    }
 }
+
+/*
+public Signup  Login(String Email, String Password){
+        checkText("New User Signup!");
+        inputValue(emailForLogin, Email);
+        inputValue(passwordForLogin, Password);
+        clickOn(loginButton);
+        return new Signup(driver);
+
+    }
+*/

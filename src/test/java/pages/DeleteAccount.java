@@ -16,5 +16,9 @@ public class DeleteAccount extends BaseClass{
         clickOn(Continue);
         return new Home(driver);
     }
+    public  Home checkTEXT(){
+        checkText("Account Deleted!");
+        return new Home(driver);
+    }
 
 }
