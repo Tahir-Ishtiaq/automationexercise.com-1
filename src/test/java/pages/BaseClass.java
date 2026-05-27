@@ -20,7 +20,7 @@ public class BaseClass {
         PageFactory.initElements(driver, this);
     }
 
-    private void prepareElement(WebElement element) {
+    /*private void prepareElement(WebElement element) {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].style.border='2px solid Red'", element);
@@ -29,30 +29,30 @@ public class BaseClass {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-    }
+    }*/
 
-    public void pause(int milliseconds) {
+    /*public void pause(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (Exception e) {
             //
         }
-    }
+    }*/
 
     public void inputValue(WebElement locator, String input) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
-        prepareElement(element);
+        //prepareElement(element);
         element.clear();
         for (String letter : input.split("")) {
             element.sendKeys(letter);
-            pause(50);
+            //pause(50);
         }
     }
 
     public void clickOn(WebElement locator) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
-        prepareElement(element);
-        pause(1000);
+        //prepareElement(element);
+        //pause(1000);
         element.click();
 
     }
@@ -67,7 +67,7 @@ public class BaseClass {
 
     public void selectDropdownByVisibleText(WebElement locator, String text) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
-        prepareElement(element);
+        //prepareElement(element);
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
     }

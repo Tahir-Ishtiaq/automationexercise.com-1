@@ -23,4 +23,11 @@ public class Home extends BaseClass{
         clickOn(delete_account);
         return new DeleteAccount(driver);
     }
+
+    @FindBy(xpath = "//a[@href='/logout']")
+    WebElement logout;
+    public Login ClickOnLogout(){
+        clickOn(logout);
+        return new Login(driver);
+    }
 }
