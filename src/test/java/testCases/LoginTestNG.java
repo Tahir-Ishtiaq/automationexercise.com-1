@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import pages.Home;
+import pages.Login;
 
 public class LoginTestNG {
-    String Email= "asd9cs@gmail.com";
+    String baseEmailPrefix = "tahir";
     WebDriver driver;
     Home home;
 
@@ -14,7 +15,6 @@ public class LoginTestNG {
     public void login(){
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
 
-        // 1. Disables extension/popups which often host third-party overlay ads
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver();
@@ -26,7 +26,7 @@ public class LoginTestNG {
     @Test(priority = 1)
     public void signUp(){
         home.ClickOnLogin()
-        .SignUp("Tahir", Email)
+        .SignUp("Tahir", baseEmailPrefix)
         .fillAndSubmitSignupForm("tahirtahir","3", "February",
 "2003", "Tahir", "Ishtiaq", "ABC","Canada",
 "ABC", "ABC", "12354", "01234567890")
@@ -36,14 +36,14 @@ public class LoginTestNG {
     @Test(priority = 4)
     public void SignupWithExistingEmail(){
         home.ClickOnLogin()
-                .SignUp("Tahir", Email)
+                .SignUp("Tahir", Login.finalGeneratedEmail)
                 .checkText("Email Address already exist!");
     }
 
     @Test(priority = 3)
     public void loginThanLogout(){
         home.ClickOnLogin()
-                .Login(Email, "tahirtahir")
+                .Login(Login.finalGeneratedEmail, "tahirtahir")
                 .ClickOnLogout();
 
     }
@@ -51,7 +51,7 @@ public class LoginTestNG {
     @Test(priority = 2)
     public void loginWithCorrectCreds(){
         home.ClickOnLogin()
-        .Login(Email, "tahirtahir");
+        .Login(Login.finalGeneratedEmail, "tahirtahir");
     }
 
     @Test(priority = 5)
@@ -66,7 +66,7 @@ public class LoginTestNG {
     @AfterMethod
     public void close(){
         if (driver != null) {
-            driver.quit(); // <-- CHANGED from close() to quit() to prevent NoSuchSessionException
+            driver.quit();
         }
     }
 }

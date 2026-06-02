@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class Login extends BaseClass{
+    public static String finalGeneratedEmail;
     public Login(WebDriver driver){
         super(driver);
     }
@@ -19,11 +20,20 @@ public class Login extends BaseClass{
     @FindBy(xpath = "//button[text()='Signup']")
     WebElement signup;
 
-    public Signup SignUp(String Name, String Email){
+    public Signup SignUp(String Name, String baseEmail){
         checkText("New User Signup!");
         inputValue(name, Name);
-        inputValue(email, Email);
+        int randomNumber = (int) (Math.random() * 10000) + 1;
+        finalGeneratedEmail = baseEmail + randomNumber + "@gmail.com";
+        inputValue(email, finalGeneratedEmail);
         clickOn(signup);
+        if(driver.getPageSource().contains("Email already exists!")){
+            email.clear();
+            int newRandomNumber = (int) (Math.random() * 10000) + 1;
+            finalGeneratedEmail = baseEmail + newRandomNumber + "@gmail.com";
+            inputValue(email, finalGeneratedEmail);
+            clickOn(signup);
+        }
         return new Signup(driver);
     }
 
@@ -47,13 +57,3 @@ public class Login extends BaseClass{
     }
 }
 
-/*
-public Signup  Login(String Email, String Password){
-        checkText("New User Signup!");
-        inputValue(emailForLogin, Email);
-        inputValue(passwordForLogin, Password);
-        clickOn(loginButton);
-        return new Signup(driver);
-
-    }
-*/
