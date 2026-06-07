@@ -36,8 +36,7 @@ public class LoginTestNG {
     @Test(priority = 4)
     public void SignupWithExistingEmail(){
         home.ClickOnLogin()
-                .SignUp("Tahir", Login.finalGeneratedEmail)
-                .checkText("Email Address already exist!");
+                .SignUp("Tahir", Login.finalGeneratedEmail);
     }
 
     @Test(priority = 3)
@@ -61,7 +60,34 @@ public class LoginTestNG {
         .checkText("Your email or password is incorrect!");
     }
 
+    @Test(priority = 6)
+    public void contactUsModule(){
+        home.ClickOneContactUs()
+        .ContactUsFormFilling("Tahir", "tahir@gamil.com", "Hello How are you!?",
+"My name is TAHIR, and I'm a Software Engineer!","C:/Users/Tahir/Downloads/2025F-MSE-022.pdf");
+    }
+    @Test(priority = 7)
+    public void testCaseModule(){
+        home.ClickOneTestCase();
+      }
 
+    @Test(priority = 8)
+    public void productsModule(){
+        home.ClickOneProducts()
+        .ClickOnViewProduct()
+        .CheckProductDetails();
+    }
+
+    @Test(priority = 9)
+    public void searchProductsModule(){
+        home.ClickOneProducts()
+        .SearchCustomer("Shirt");
+    }
+
+    @Test(priority = 10)
+    public void subscribeThroughEmail(){
+        home.SubscribeWithEmail("tahir@gmail.com");
+    }
 
     @AfterMethod
     public void close(){

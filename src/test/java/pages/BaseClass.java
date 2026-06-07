@@ -1,13 +1,13 @@
 package pages;
 
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 
@@ -70,5 +70,41 @@ public class BaseClass {
         //prepareElement(element);
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(text);
+    }
+
+    public void uploadFile(WebElement locator, String filePath) {
+        // 1. Wait for the element to be present in the HTML DOM
+        WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
+        // 2. Pass the entire path at once without clearing it first
+        element.sendKeys(filePath);
+    }
+
+    public void handleAlert() {
+        try {
+            // 1. Wait for the alert pop-up to physically appear
+            wait.until(ExpectedConditions.alertIsPresent());
+            // 2. Switch focus from the webpage to the pop-up box
+            Alert alert = driver.switchTo().alert();
+            // 3. Click the 'OK' button
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert appeared: " + e.getMessage());
+        }
+    }
+
+
+
+    public void scrollToElement(WebElement locator) {
+        try {
+            // 1. Ensure the element exists in the HTML DOM first
+            WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
+            // 2. Execute JavaScript to scroll it perfectly into the center of the viewport
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+            // Give the smooth scroll animation a split second to finish moving
+            Thread.sleep(600);
+        } catch (Exception e) {
+            System.out.println("Could not scroll to element: " + e.getMessage());
+        }
     }
 }

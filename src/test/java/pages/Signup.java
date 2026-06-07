@@ -76,16 +76,19 @@ public class Signup extends BaseClass{
         clickOn(agreecheck1);
         clickOn(agreecheck2);
 
+        scrollToElement(firstname);
         inputValue(firstname, fName);
         inputValue(lastname, lName);
         inputValue(address1, addr);
         selectDropdownByVisibleText(country, countryVal);
 
+        scrollToElement(state);
         inputValue(state, stateVal);
         inputValue(city, cityVal);
         inputValue(zipcode, zip);
         inputValue(mobilenumber, mobile);
 
+        scrollToElement(createaccount);
         clickOn(createaccount);
 
         return new AccountCreated(driver);
