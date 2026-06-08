@@ -2,6 +2,7 @@ package pages;
 
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -105,6 +106,28 @@ public class BaseClass {
             Thread.sleep(600);
         } catch (Exception e) {
             System.out.println("Could not scroll to element: " + e.getMessage());
+        }
+    }
+
+
+    public void hoverOverElement(WebElement element) {
+        try {
+            // 1. Ensure the element is visible and ready on the page
+            wait.until(ExpectedConditions.visibilityOf(element));
+
+            // 2. Initialize the Actions class instance
+            Actions actions = new Actions(driver);
+
+            // 3. Move the mouse to the element and execute the action
+            actions.moveToElement(element).build().perform();
+
+            System.out.println("Successfully hovered over element: " + element.toString());
+
+            // Optional: Short pause to let any hover menus/tooltips animate open
+            Thread.sleep(500);
+
+        } catch (Exception e) {
+            System.out.println("Failed to hover over element: " + e.getMessage());
         }
     }
 }

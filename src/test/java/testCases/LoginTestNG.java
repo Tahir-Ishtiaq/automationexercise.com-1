@@ -89,6 +89,18 @@ public class LoginTestNG {
         home.SubscribeWithEmail("tahir@gmail.com");
     }
 
+    @Test(priority = 11)
+    public void subscribeFromViewCart(){
+        home.ClickOnViewCart()
+        .SubscribeEmailFromViewCart("tahir@gmail.com");
+    }
+
+    @Test(priority = 12)
+    public void checkAddToCart(){
+        home.ClickOneProducts()
+         .AddToCart();
+    }
+
     @AfterMethod
     public void close(){
         if (driver != null) {

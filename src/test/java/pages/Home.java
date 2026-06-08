@@ -62,4 +62,11 @@ public class Home extends BaseClass{
         clickOn(subscribe_button);
         checkText("You have been successfully subscribed!");
     }
+
+    @FindBy(xpath = "//a[@href='/view_cart'][1]")
+    WebElement view_cart;
+    public ViewCart ClickOnViewCart(){
+        clickOn(view_cart);
+        return new ViewCart(driver);
+    }
 }
