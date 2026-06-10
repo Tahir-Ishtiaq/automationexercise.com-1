@@ -100,6 +100,11 @@ public class LoginTestNG {
         home.ClickOneProducts()
          .AddToCart();
     }
+    @Test(priority = 13)
+    public void productQuantity(){
+        home.ClickOnProduct2()
+        .IncreaseQuantity();
+    }
 
     @AfterMethod
     public void close(){

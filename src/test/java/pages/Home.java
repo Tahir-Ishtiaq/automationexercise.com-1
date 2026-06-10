@@ -69,4 +69,41 @@ public class Home extends BaseClass{
         clickOn(view_cart);
         return new ViewCart(driver);
     }
+
+
+    @FindBy(xpath = "//a[@href='/product_details/2']")
+    WebElement product_detail_2;
+    public ProductDetails ClickOnProduct2(){
+        scrollToElement(product_detail_2);
+        clickOn(product_detail_2);
+        return new ProductDetails(driver);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
