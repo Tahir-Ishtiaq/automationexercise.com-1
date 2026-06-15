@@ -52,7 +52,7 @@ public class Products extends BaseClass{
     @FindBy(xpath = "//u[text()='View Cart']")
     WebElement view_cart;
 
-    public void AddToCart(){
+    public Home AddToCart(){
         // --- PRODUCT 1 FLOW ---
         // Scroll to the regular product box
         scrollToElement(add_to_cart1_normal);
@@ -74,6 +74,7 @@ public class Products extends BaseClass{
 
         // Go to the final cart page
         clickOn(view_cart);
+        return new Home(driver);
     }
 
 }

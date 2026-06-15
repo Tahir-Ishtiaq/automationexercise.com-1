@@ -21,4 +21,30 @@ public class ViewCart extends BaseClass{
         clickOn(subscribe_button);
         checkText("You have been successfully subscribed!");
     }
+
+    @FindBy(xpath ="//a[text()='Proceed To Checkout']")
+    WebElement click_on_button;
+
+    @FindBy(xpath ="//u[text()='Register / Login']")
+    WebElement click_on_register;
+
+
+    public Login CLickOnCheckOutWhenNoLogin(){
+        clickOn(click_on_button);
+        clickOn(click_on_register);
+        return new Login(driver);
+    }
+
+    @FindBy(xpath ="//textarea[@name='message']")
+    WebElement textarea;
+
+    @FindBy(xpath ="//a[@href='/payment']")
+    WebElement placeOrder;
+    public Payment CLickOnCheckOutWhenLogin(){
+        clickOn(click_on_button);
+        scrollToElement(textarea);
+        inputValue(textarea, "Hello123");
+        clickOn(placeOrder);
+        return new Payment(driver);
+    }
 }

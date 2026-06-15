@@ -106,6 +106,24 @@ public class LoginTestNG {
         .IncreaseQuantity();
     }
 
+    @Test(priority = 14)
+    public void PlaceOrderAndCheckOutWithRegister(){
+        home.ClickOneProducts()
+        .AddToCart()
+        .ClickOnViewCart()
+        .CLickOnCheckOutWhenNoLogin()
+        .SignUp("Tahir","tahir.ishtiaq")
+        .fillAndSubmitSignupForm("tahirtahir","3", "February",
+                "2003", "Tahir", "Ishtiaq", "ABC","Canada",
+                "ABC", "ABC", "12354", "01234567890")
+        .continueUser()
+        .ClickOnViewCart()
+        .CLickOnCheckOutWhenLogin()
+        .makePayment()
+        .CheckAndDeleteAccount()
+        .Continueflow();
+    }
+
     @AfterMethod
     public void close(){
         if (driver != null) {

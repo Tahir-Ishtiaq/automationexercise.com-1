@@ -13,11 +13,8 @@ public class DeleteAccount extends BaseClass{
     WebElement Continue;
 
     public  Home Continueflow(){
-        clickOn(Continue);
-        return new Home(driver);
-    }
-    public  Home checkTEXT(){
         checkText("Account Deleted!");
+        clickOn(Continue);
         return new Home(driver);
     }
 
