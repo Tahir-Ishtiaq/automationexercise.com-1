@@ -1,12 +1,20 @@
 package testCases;
 
+//cd "C:\Users\Tahir\Downloads\QA Automation\automationexercise.com-1"
+//Get-Content target/logs/automation.log -Wait
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
+import pages.BaseClass;
 import pages.Home;
 import pages.Login;
 
 public class LoginTestNG {
+    private static final Logger logger =
+            LoggerFactory.getLogger(LoginTestNG.class);
     String baseEmailPrefix = "tahir";
     WebDriver driver;
     Home home;
@@ -17,9 +25,12 @@ public class LoginTestNG {
 
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
+        logger.info("Opening Chrome");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        logger.info("Navigating to website");
         driver.get("https://automationexercise.com");
+        logger.info("Google opened successfully: https://automationexercise.com");
         home = new Home(driver);
     }
 
