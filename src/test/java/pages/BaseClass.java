@@ -85,6 +85,7 @@ public class BaseClass {
 
 
     public void checkText(String text){
+        logger.info("Verifying if page contains text: '{}'", text);
         Assert.assertTrue(driver.getPageSource().contains(text),
                 "Expected text not found on page: " + text);
     }

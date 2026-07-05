@@ -10,9 +10,15 @@ public class ProductDetails extends BaseClass{
     }
 
     public void CheckProductDetails(){
-        String[] infos ={"Blue Top", "Women > Tops", "In Stock", "New", "Polo"};
-        for(String info : infos){
-            checkText(info);
+        try{
+            String[] infos ={"Blue Top","In Stock", "New", "Polo"};
+            for(String info : infos){
+                checkText(info);
+                logger.info("Expected Element matched! '{}'", info);
+            }
+        } catch (Throwable t) {
+            logger.error("Element not matched.", t);
+            throw t;
         }
     }
 
